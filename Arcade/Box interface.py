@@ -5,10 +5,11 @@ import timeit
 ROW_COUNT = 8
 COLUMN_COUNT = 8
 # This sets the WIDTH and HEIGHT of each grid location
-WIDTH = 700
-HEIGHT = 700
+WIDTH = 50
+HEIGHT = 50
 # This sets the margin between each cell
 # and on the edges of the screen.
+MARGIN = 5
 # Do the math to figure out our screen dimensions
 SCREEN_WIDTH = (WIDTH + MARGIN) * COLUMN_COUNT + MARGIN
 SCREEN_HEIGHT = (HEIGHT + MARGIN) * ROW_COUNT + MARGIN
@@ -16,27 +17,7 @@ HALF_SQUARE_WIDTH = (WIDTH)/2
 HALF_SQUARE_HEIGHT = (HEIGHT)/2
 SCREEN_TITLE = "SNAKE"
 # We create a class for the player
-class Box:
-    x = WIDTH/7
-    y = HEIGHT/2
-    speed=0
-    def __init__(self, size, mass):
-        self.mass=mass
-        self.size=size
-    def update_momentum(self):
-        self.momentum=self.speed * self.mass
-
-class Bullet:
-    r = 2
-    x = 0
-    y = (HEIGHT+20) / 2
-    def __init__(self, velocity, mass):
-        self.velocity=velocity
-        self.mass = mass
-        self.momentum = 0
-def update_position(Box):
-
-class Player
+class Player:
     # Let's define the initial configuration of the player
     # We create a list that with the points of the snake
     snake = [(2,3)] #Initial position
@@ -126,6 +107,7 @@ class MyGame(arcade.Window):
             shape=arcade.create_rectangle_filled(x, y, WIDTH, HEIGHT, arcade.color.RED)       
             self.shape_list.append(shape)
             arcade.pause(1/self.player.speed)
+            
     def on_draw(self):
             arcade.start_render()
             # Start timing how long this takes
@@ -141,7 +123,7 @@ class MyGame(arcade.Window):
                 arcade.draw_text("GAME OVER", start_x, start_y, arcade.color.WHITE, 15)
                 start_x = 100
                 start_y = 150
-                arcade.draw_text("POINTS= " + str(self.apple.points), start_x, start_y, arcade.color.WHITE , 15)
+                arcade.draw_text("POINTS= " + str(self.apple.points), start_x, start_y, arcade.color.WHITE ,15 )
 
     def on_key_press(self, key, modifiers):
         if key == arcade.key.LEFT and self.player.K:
@@ -156,6 +138,7 @@ class MyGame(arcade.Window):
         elif key == arcade.key.DOWN and self.player.K:
             self.player.change_velocity_Down()
             self.player.K = False
+
 
 def main():
     MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
